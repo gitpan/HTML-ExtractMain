@@ -95,11 +95,11 @@ HTML::ExtractMain - Extract the main content of a web page
 
 =head1 VERSION
 
-Version 0.10
+Version 0.50
 
 =cut
 
-our $VERSION = '0.10';
+our $VERSION = '0.50';
 
 =head1 SYNOPSIS
 
@@ -188,7 +188,12 @@ L<http://search.cpan.org/dist/HTML-ExtractMain/>
 
 =head1 SEE ALSO
 
-* C<HTML::Feature>
+=over 4
+
+=item * C<HTML::Feature>
+=item * C<HTML::ExtractContent>
+
+=back
 
 =head1 ACKNOWLEDGEMENTS
 
