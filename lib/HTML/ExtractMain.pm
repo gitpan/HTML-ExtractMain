@@ -3,6 +3,7 @@
 package HTML::ExtractMain;
 use Carp qw( carp );
 use HTML::TreeBuilder;
+use Object::Destroyer 2.0;
 use Scalar::Util qw( refaddr );
 use base qw( Exporter );
 use strict;
@@ -30,6 +31,10 @@ sub extract_main_html {
             return;
         }
     }
+
+    # Remove any lingering circular references. Details at:
+    # http://www.perl.com/pub/2007/06/07/better-code-through-destruction.html
+    my $sentry = Object::Destroyer->new( $tree, 'delete' );
 
     # Use the Readability algorithm, inspired by:
     # http://lab.arc90.com/experiments/readability/js/readability.js
@@ -95,11 +100,11 @@ HTML::ExtractMain - Extract the main content of a web page
 
 =head1 VERSION
 
-Version 0.50
+Version 0.60
 
 =cut
 
-our $VERSION = '0.50';
+our $VERSION = '0.60';
 
 =head1 SYNOPSIS
 
@@ -191,6 +196,7 @@ L<http://search.cpan.org/dist/HTML-ExtractMain/>
 =over 4
 
 =item * C<HTML::Feature>
+
 =item * C<HTML::ExtractContent>
 
 =back
@@ -199,11 +205,12 @@ L<http://search.cpan.org/dist/HTML-ExtractMain/>
 
 The Readability algorithm is ported from Arc90's JavaScript original,
 built as part of the excellent Readability application, online at
-L<http://lab.arc90.com/experiments/readability/>.
+L<http://lab.arc90.com/experiments/readability/>, repository at
+L<http://code.google.com/p/arc90labs-readability/>.
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2009 Anirvan Chatterjee, all rights reserved.
+Copyright 2009-2010 Anirvan Chatterjee, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
