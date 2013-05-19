@@ -16,3 +16,4 @@ t/test_case_data/google_short_blog.html
 t/test_case_data/indymedia_feature.html
 t/test_case_data/lessig_blog.html
 t/test_cases.t
+META.json
